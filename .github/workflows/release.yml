@@ -28,8 +28,8 @@ jobs:
 
       - name: Execute Gradle publish
         env:
-          ORG_GRADLE_PROJECT_repoUsername: ${{ secrets.MAVEN_REPO_USERNAME }}
-          ORG_GRADLE_PROJECT_repoPassword: ${{ secrets.MAVEN_REPO_SECRET }}
+          REPO_USERNAME: ${{ secrets.MAVEN_REPO_USERNAME }}
+          REPO_PASSWORD: ${{ secrets.MAVEN_REPO_SECRET }}
           ORG_GRADLE_PROJECT_release: true
         run: ./gradlew publish
 

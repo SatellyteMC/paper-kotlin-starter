@@ -65,8 +65,8 @@ publishing {
             val snapshotsRepoUrl = "https://repo.satellyte.net/snapshots"
             url = uri(if (project.hasProperty("release")) releasesRepoUrl else snapshotsRepoUrl)
             credentials {
-                username = project.properties.repoUsername
-                password = project.properties.repoPassword
+                username = System.getenv("REPO_USERNAME")
+                password = System.getenv("REPO_PASSWORD")
             }
         }
     }
