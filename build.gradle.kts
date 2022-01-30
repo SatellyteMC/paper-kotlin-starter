@@ -61,12 +61,12 @@ publishing {
     }
     repositories {
         maven {
-            val releasesRepoUrl = "https://repo.satellyte.net/releases"
-            val snapshotsRepoUrl = "https://repo.satellyte.net/snapshots"
+            val releasesRepoUrl = "https://repo.example.com/releases"
+            val snapshotsRepoUrl = "https://repo.example.com/snapshots"
             url = uri(if (project.hasProperty("release")) releasesRepoUrl else snapshotsRepoUrl)
             credentials {
-                username = System.getenv("REPO_USERNAME")
-                password = System.getenv("REPO_PASSWORD")
+                username = System.getenv("MAVEN_REPO_USERNAME")
+                password = System.getenv("MAVEN_REPO_PASSWORD")
             }
         }
     }

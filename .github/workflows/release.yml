@@ -23,13 +23,10 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
 
-      - name: Execute Gradle build
-        run: ./gradlew build
-
       - name: Execute Gradle publish
         env:
-          REPO_USERNAME: ${{ secrets.MAVEN_REPO_USERNAME }}
-          REPO_PASSWORD: ${{ secrets.MAVEN_REPO_SECRET }}
+          MAVEN_REPO_USERNAME: ${{ secrets.MAVEN_REPO_USERNAME }}
+          MAVEN_REPO_PASSWORD: ${{ secrets.MAVEN_REPO_SECRET }}
           ORG_GRADLE_PROJECT_release: true
         run: ./gradlew publish
 
