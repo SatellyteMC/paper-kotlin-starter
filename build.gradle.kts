@@ -1,5 +1,6 @@
 plugins {
     kotlin("jvm") version "1.6.10"
+    `maven-publish`
 }
 
 group = "net.satellyte"
@@ -47,5 +48,26 @@ tasks {
 
     jar {
         from (shade.map { if (it.isDirectory) it else zipTree(it) })
+    }
+
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("maven") {
+            artifactId = "starter"
+            from(components["java"])
+        }
+    }
+    repositories {
+        maven {
+            val releasesRepoUrl = "https://repo.satellyte.net/releases"
+            val snapshotsRepoUrl = "https://repo.satellyte.net/snapshots"
+            url = uri(if (project.hasProperty("release")) releasesRepoUrl else snapshotsRepoUrl)
+            credentials {
+                username = project.properties.repoUsername
+                password = project.properties.repoPassword
+            }
+        }
     }
 }
