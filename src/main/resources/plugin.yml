@@ -1,3 +1,4 @@
 name: PaperKotlinStarter
 main: net.satellyte.starter.Starter
 version: 1.0.0
+api-version: $apiVersion
