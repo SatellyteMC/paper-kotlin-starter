@@ -1,19 +1,26 @@
 plugins {
     kotlin("jvm") version "1.6.10"
     `maven-publish`
+    id("io.papermc.paperweight.userdev") version "1.3.5"
+    id("xyz.jpenilla.run-paper") version "1.0.6"
+    id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
 }
 
 group = "net.satellyte"
 version = "1.0.0"
+description = "My Kotlin Paper Plugin"
 
 repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/")
+    maven("https://repo.codemc.org/repository/maven-public")
+    maven("https://jitpack.io")
+    maven("https://repo.dmulloy2.net/repository/public/")
 }
 
 dependencies {
     implementation(kotlin("stdlib"))
-    compileOnly("io.papermc.paper:paper-api:1.18-R0.1-SNAPSHOT")
+    paperDevBundle("1.18.2-R0.1-SNAPSHOT")
 }
 
 val shade = configurations.create("shade")
@@ -50,6 +57,14 @@ tasks {
         from (shade.map { if (it.isDirectory) it else zipTree(it) })
     }
 
+}
+
+bukkit {
+    name = "Starter"
+    description = description
+    main = "net.satellyte.starter.Starter"
+    version = version
+    apiVersion = "1.18"
 }
 
 publishing {
