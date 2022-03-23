@@ -30,6 +30,10 @@ java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
 tasks {
 
+    assemble {
+        dependsOn(reobfJar)
+    }
+
     javadoc {
         options.encoding = "UTF-8"
     }
