@@ -20,7 +20,7 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    paperDevBundle("1.18.2-R0.1-SNAPSHOT")
+    paperDevBundle("1.19-R0.1-SNAPSHOT")
 }
 
 val shade = configurations.create("shade")
@@ -68,7 +68,7 @@ bukkit {
     description = description
     main = "net.satellyte.starter.Starter"
     version = version
-    apiVersion = "1.18"
+    apiVersion = "1.19"
 }
 
 publishing {
