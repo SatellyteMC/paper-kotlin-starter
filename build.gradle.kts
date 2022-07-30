@@ -13,14 +13,11 @@ description = "My Kotlin Paper Plugin"
 repositories {
     mavenCentral()
     maven("https://papermc.io/repo/repository/maven-public/")
-    maven("https://repo.codemc.org/repository/maven-public")
-    maven("https://jitpack.io")
-    maven("https://repo.dmulloy2.net/repository/public/")
 }
 
 dependencies {
     implementation(kotlin("stdlib"))
-    paperDevBundle("1.19-R0.1-SNAPSHOT")
+    paperDevBundle("1.19.1-R0.1-SNAPSHOT")
 }
 
 val shade = configurations.create("shade")
