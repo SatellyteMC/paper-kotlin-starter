@@ -1,13 +1,19 @@
 package net.satellyte.starter
 
-import org.bukkit.plugin.java.JavaPlugin
+import net.axay.kspigot.main.KSpigot
 
-class Starter : JavaPlugin() {
-    override fun onEnable() {
-        super.onEnable()
+class Starter : KSpigot() {
+    companion object {
+        lateinit var INSTANCE: Starter
     }
 
-    override fun onDisable() {
-        super.onDisable()
+    override fun load() {
+        INSTANCE = this
     }
+
+    override fun startup() {
+        logger.info("Hello from $name!")
+    }
+
+    override fun shutdown() { }
 }

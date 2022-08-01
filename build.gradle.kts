@@ -1,7 +1,7 @@
 plugins {
-    kotlin("jvm") version "1.6.10"
+    kotlin("jvm") version "1.7.0"
     `maven-publish`
-    id("io.papermc.paperweight.userdev") version "1.3.5"
+    id("io.papermc.paperweight.userdev") version "1.3.6"
     id("xyz.jpenilla.run-paper") version "1.0.6"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
 }
@@ -18,6 +18,7 @@ repositories {
 dependencies {
     implementation(kotlin("stdlib"))
     paperDevBundle("1.19.1-R0.1-SNAPSHOT")
+    implementation("net.axay:kspigot:1.19.0")
 }
 
 val shade = configurations.create("shade")
@@ -43,12 +44,6 @@ tasks {
         kotlinOptions.jvmTarget = "17"
     }
     
-    processResources {
-        filesMatching("*.yml") {
-            expand(project.properties)
-        }
-    }
-    
     create<Jar>("sourceJar") {
         archiveClassifier.set("source")
         from(sourceSets["main"].allSource)
@@ -56,6 +51,7 @@ tasks {
 
     jar {
         from (shade.map { if (it.isDirectory) it else zipTree(it) })
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
 
 }
