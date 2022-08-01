@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     kotlin("jvm") version "1.7.0"
-    `maven-publish`
+    id("com.github.johnrengelman.shadow") version "7.1.2"
+    id("maven-publish")
     id("io.papermc.paperweight.userdev") version "1.3.6"
     id("xyz.jpenilla.run-paper") version "1.0.6"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.1"
@@ -21,19 +24,12 @@ dependencies {
     implementation("net.axay:kspigot:1.19.0")
 }
 
-val shade = configurations.create("shade")
-shade.extendsFrom(configurations.implementation.get())
-
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
 
 tasks {
 
     assemble {
         dependsOn(reobfJar)
-    }
-
-    javadoc {
-        options.encoding = "UTF-8"
     }
 
     compileJava {
@@ -43,17 +39,8 @@ tasks {
     compileKotlin {
         kotlinOptions.jvmTarget = "17"
     }
-    
-    create<Jar>("sourceJar") {
-        archiveClassifier.set("source")
-        from(sourceSets["main"].allSource)
-    }
 
-    jar {
-        from (shade.map { if (it.isDirectory) it else zipTree(it) })
-        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-    }
-
+    shadowJar { }
 }
 
 bukkit {
