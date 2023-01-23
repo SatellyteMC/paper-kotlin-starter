@@ -1,11 +1,11 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm") version "1.7.0"
+    kotlin("jvm") version "1.7.22"
     id("com.github.johnrengelman.shadow") version "7.1.2"
     id("maven-publish")
-    id("io.papermc.paperweight.userdev") version "1.3.8"
-    id("xyz.jpenilla.run-paper") version "1.0.6"
+    id("io.papermc.paperweight.userdev") version "1.4.1"
+    id("xyz.jpenilla.run-paper") version "2.0.1"
     id("net.minecrell.plugin-yml.bukkit") version "0.5.2"
 }
 
@@ -20,8 +20,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    paperDevBundle("1.19.2-R0.1-SNAPSHOT")
-    implementation("net.axay:kspigot:1.19.0")
+    paperDevBundle("1.19.3-R0.1-SNAPSHOT")
+    implementation("net.axay:kspigot:1.19.1")
 }
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
