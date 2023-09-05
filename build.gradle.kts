@@ -1,12 +1,12 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
-    kotlin("jvm") version "1.8.20"
+    kotlin("jvm") version "1.8.22"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("maven-publish")
-    id("io.papermc.paperweight.userdev") version "1.5.4"
-    id("xyz.jpenilla.run-paper") version "2.0.1"
-    id("net.minecrell.plugin-yml.bukkit") version "0.5.3"
+    id("io.papermc.paperweight.userdev") version "1.5.5"
+    id("xyz.jpenilla.run-paper") version "2.1.0"
+    id("net.minecrell.plugin-yml.bukkit") version "0.6.0"
 }
 
 group = "net.satellyte"
@@ -20,8 +20,8 @@ repositories {
 
 dependencies {
     implementation(kotlin("stdlib"))
-    paperDevBundle("1.19.4-R0.1-SNAPSHOT")
-    implementation("net.axay:kspigot:1.19.2")
+    paperweight.paperDevBundle("1.20.1-R0.1-SNAPSHOT")
+    implementation("net.axay:kspigot:1.20.1")
 }
 
 java.toolchain.languageVersion.set(JavaLanguageVersion.of(17))
@@ -48,5 +48,5 @@ bukkit {
     description = description
     main = "net.satellyte.starter.Starter"
     version = version
-    apiVersion = "1.19"
+    apiVersion = "1.20"
 }
